@@ -504,8 +504,14 @@ function showData(data) {
   mountCharts(view, data)
 }
 
-function showTip(html, clientX, clientY) {
-  tip.innerHTML = html
+// data-tip values hold plain text (skill names come from local transcripts), so they are
+// never parsed as HTML. Only paceTip builds markup, and it escapes its own values.
+function showTip(content, clientX, clientY, asHtml = false) {
+  if (asHtml) {
+    tip.innerHTML = content
+  } else {
+    tip.textContent = content
+  }
   tip.style.opacity = '1'
   const box = tip.getBoundingClientRect()
   const left = clientX + 14 + box.width > window.innerWidth ? clientX - box.width - 14 : clientX + 14
@@ -534,7 +540,7 @@ function hoverPace(event, hit) {
     guide.setAttribute('x2', svgX.toFixed(1))
     guide.setAttribute('opacity', '1')
   }
-  showTip(paceTip(info, point), event.clientX, event.clientY)
+  showTip(paceTip(info, point), event.clientX, event.clientY, true)
 }
 
 app.addEventListener('pointermove', (event) => {
