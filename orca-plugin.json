@@ -3,7 +3,7 @@
   "execution": "trusted-worker",
   "id": "limits-tracker",
   "name": "Usage Companion",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Your Claude 5-hour and weekly limits, your pace through the week, skill use and daily tokens.",
   "repository": "https://github.com/renanluiz/usage-companion",
   "license": "MIT",
